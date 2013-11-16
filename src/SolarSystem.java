@@ -92,38 +92,7 @@ public class SolarSystem extends JFrame
 	 */
 	public void drawSolarObject(double distance, double angle, double diameter, String col)
 	{
-		Color colour = this.getColourFromString(col);
-		double centreOfRotationX = ((double) width) / 2.0; 
-		double centreOfRotationY = ((double) height) / 2.0; 
-
-		double rads = Math.toRadians(angle);
-		double x = (int) (centreOfRotationX + distance * Math.sin(rads)) - diameter / 2;
-		double y = (int) (centreOfRotationY + distance * Math.cos(rads)) - diameter / 2;
-
-		synchronized (this)
-		{
-			if (things.size() > 1000)
-			{
-				System.out.println("\n\n");
-				System.out.println(" ********************************************************* ");
-				System.out.println(" ***** Only 1000 Entities Supported per Solar System ***** ");
-				System.out.println(" ********************************************************* ");
-				System.out.println("\n\n");
-				System.out.println("If you are't trying to add this many things");
-				System.out.println("to your SolarSystem, then you have probably");
-				System.out.println("forgotten to call the finishedDrawing() method");
-				System.out.println("See the JavaDOC documentation for more information");
-				System.out.println("\n-- Joe");
-				System.out.println("\n\n");
-
-				this.dispatchEvent(new WindowEvent(this, WindowEvent.WINDOW_CLOSING));
-			}
-			else
-			{
-				SolarObject t = new SolarObject((int)x, (int)y, (int)diameter, colour);
-				things.add(t);
-			}
-		}
+		drawSolarObjectAbout(distance, angle, diameter, col, 0, 0);
 	}
 
 	/**
