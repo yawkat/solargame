@@ -69,49 +69,14 @@ public class SolarSystem extends JFrame
 	// 
 	private Color getColourFromString(String col)
 	{
-		Color colour = Color.WHITE;
-		col = col.toUpperCase();
-
-		if (col.equals("BLACK"))
-			colour = Color.BLACK;	
-
-		if (col.equals("BLUE"))
-			colour = Color.BLUE;	
-
-		if (col.equals("CYAN"))
-			colour = Color.CYAN;	
-
-		if (col.equals("DARKGREY"))
-			colour = Color.DARK_GRAY;	
-
-		if (col.equals("GREY"))
-			colour = Color.GRAY;	
-
-		if (col.equals("GREEN"))
-			colour = Color.GREEN;	
-
-		if (col.equals("LIGHTGREY"))
-			colour = Color.LIGHT_GRAY;	
-				
-		if (col.equals("MAGENTA"))
-			colour = Color.MAGENTA;	
-
-		if (col.equals("ORANGE"))
-			colour = Color.ORANGE;	
-
-		if (col.equals("PINK"))
-			colour = Color.PINK;	
-
-		if (col.equals("RED"))
-			colour = Color.RED;	
-		
-		if (col.equals("WHITE"))
-			colour = Color.WHITE;	
-
-		if (col.equals("YELLOW"))
-			colour = Color.YELLOW;	
-
-		return colour;
+		try {
+			col = col.toUpperCase();
+			if (col.equals("DARKGREY")) return Color.DARK_GRAY;
+			if (col.equals("LIGHTGREY")) return Color.LIGHT_GRAY;
+			return (Color) Color.class.getField(col).get(null);
+		} catch (Exception e) {
+			return Color.WHITE;
+		}
 	}
 	
 	/**
